@@ -48,7 +48,7 @@ public class NotaRepositorio {
         Files.writeString(ARCHIVO, json);
     }
     
-    public List<Nota> buscarPorSeccion(int seccionId) throws Exception{
+    public static List<Nota> buscarPorSeccion(int seccionId) throws Exception{
     	List<Nota> todasLasNotas = cargarNotas();
     	List<Nota> notasDeLaSeccion = new ArrayList<Nota>();
     	
@@ -60,8 +60,7 @@ public class NotaRepositorio {
     	return notasDeLaSeccion;
     }
     
-    public static Nota buscarNota(int id) throws Exception {
-    	List<Nota> notas = cargarNotas();
+    public static Nota buscarNota(int id, List<Nota> notas) {
     	Nota encontrada = null;
     	Nota nota = null;
     	int i = 0;
@@ -77,9 +76,8 @@ public class NotaRepositorio {
     	return encontrada;
     }
     
-    private static int obtenerProximoId() throws Exception{
+    private static int obtenerProximoId(List<Nota> notas) throws Exception{
         int max = 0;
-        List<Nota> notas = cargarNotas();
         for (Nota nota : notas) {
             if (nota.getId() > max) {
                 max = nota.getId();
@@ -91,7 +89,7 @@ public class NotaRepositorio {
     public static Nota crearNota(Nota nota) throws Exception{
     	List<Nota> notas = cargarNotas();
     	
-    	int nuevoId = obtenerProximoId();
+    	int nuevoId = obtenerProximoId(notas);
     	nota.asignarId(nuevoId);
     	
     	notas.add(nota);
@@ -103,7 +101,7 @@ public class NotaRepositorio {
     public static boolean eliminarNota(int id) throws Exception{
     	List<Nota> notas = cargarNotas();
     	boolean eliminada = false;
-    	Nota nota = buscarNota(id);
+    	Nota nota = buscarNota(id, notas);
     	if (nota != null) {
 			notas.remove(nota);
 			eliminada = true;
@@ -115,22 +113,18 @@ public class NotaRepositorio {
 	public static Nota editarNota(int id, String nuevoTitulo, String nuevoContenido, int nuevaSeccionId)
 			throws Exception {
 		
-		Nota nota = null;
 		List<Nota> notas = cargarNotas();
+		Nota nota = buscarNota(id, notas);
 		
-		for (int i = 0; i < notas.size(); i++) {
-			nota = notas.get(i);
-			if (nota.getId() == id) {
+			if (nota != null) {
 
 				if (nuevoTitulo != null) {nota.actualizarTitulo(nuevoTitulo);}
 				if (nuevoContenido != null) {nota.actualizarContenido(nuevoContenido);}
 				if (nuevaSeccionId > 0) {nota.actualizarSeccionId(nuevaSeccionId);}
 
 				guardarNotas(notas);
-				return nota;
 			}
-		}
-
-		return null;
+		
+		return nota;
 	}
 }
