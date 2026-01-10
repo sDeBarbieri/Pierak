@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import models.Nota;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,7 +28,7 @@ public class NotaRepositorio {
             new TypeToken<List<Nota>>() {}.getType();
 
     // 🔹 Cargar todas las notas
-    public static List<Nota> cargarNotas() throws Exception {
+    public static List<Nota> cargarNotas() throws IOException {
 
         if (!Files.exists(ARCHIVO)) {
             return new ArrayList<>();
@@ -39,14 +40,14 @@ public class NotaRepositorio {
     }
 
     // 🔹 Guardar todas las notas
-    public static void guardarNotas(List<Nota> notas) throws Exception {
+	public static void guardarNotas(List<Nota> notas) throws IOException {
 
-        Files.createDirectories(ARCHIVO.getParent());
+		Files.createDirectories(ARCHIVO.getParent());
 
-        String json = gson.toJson(notas);
+		String json = gson.toJson(notas);
 
-        Files.writeString(ARCHIVO, json);
-    }
+		Files.writeString(ARCHIVO, json);
+	}
     
     public static List<Nota> buscarPorSeccion(int seccionId) throws Exception{
     	List<Nota> todasLasNotas = cargarNotas();
@@ -60,7 +61,7 @@ public class NotaRepositorio {
     	return notasDeLaSeccion;
     }
     
-    public static Nota buscarNota(int id, List<Nota> notas) {
+    private static Nota buscarNota(int id, List<Nota> notas) {
     	Nota encontrada = null;
     	Nota nota = null;
     	int i = 0;
@@ -97,6 +98,12 @@ public class NotaRepositorio {
     	
     	return nota;
     }
+    
+    public static Nota crearNota(String titulo, String contenido, int seccionId) throws Exception {
+        Nota nota = new Nota(titulo, contenido, seccionId);
+        return crearNota(nota);
+    }
+
     
     public static boolean eliminarNota(int id) throws Exception{
     	List<Nota> notas = cargarNotas();
