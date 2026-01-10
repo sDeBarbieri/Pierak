@@ -27,7 +27,7 @@ public class NotaRepositorio {
             new TypeToken<List<Nota>>() {}.getType();
 
     // 🔹 Cargar todas las notas
-    public static List<Nota> cargarTodas() throws Exception {
+    public static List<Nota> cargarNotas() throws Exception {
 
         if (!Files.exists(ARCHIVO)) {
             return new ArrayList<>();
@@ -39,7 +39,7 @@ public class NotaRepositorio {
     }
 
     // 🔹 Guardar todas las notas
-    public static void guardarTodas(List<Nota> notas) throws Exception {
+    public static void guardarNotas(List<Nota> notas) throws Exception {
 
         Files.createDirectories(ARCHIVO.getParent());
 
@@ -49,7 +49,7 @@ public class NotaRepositorio {
     }
     
     public List<Nota> buscarPorSeccion(int seccionId) throws Exception{
-    	List<Nota> todasLasNotas = cargarTodas();
+    	List<Nota> todasLasNotas = cargarNotas();
     	List<Nota> notasDeLaSeccion = new ArrayList<Nota>();
     	
     	for (Nota nota : todasLasNotas) {
@@ -61,7 +61,7 @@ public class NotaRepositorio {
     }
     
     public static Nota buscarNota(int id) throws Exception {
-    	List<Nota> notas = cargarTodas();
+    	List<Nota> notas = cargarNotas();
     	Nota encontrada = null;
     	Nota nota = null;
     	int i = 0;
@@ -79,7 +79,7 @@ public class NotaRepositorio {
     
     private static int obtenerProximoId() throws Exception{
         int max = 0;
-        List<Nota> notas = cargarTodas();
+        List<Nota> notas = cargarNotas();
         for (Nota nota : notas) {
             if (nota.getId() > max) {
                 max = nota.getId();
@@ -89,26 +89,26 @@ public class NotaRepositorio {
     }
 
     public static Nota crearNota(Nota nota) throws Exception{
-    	List<Nota> notas = cargarTodas();
+    	List<Nota> notas = cargarNotas();
     	
     	int nuevoId = obtenerProximoId();
     	nota.asignarId(nuevoId);
     	
     	notas.add(nota);
-    	guardarTodas(notas);
+    	guardarNotas(notas);
     	
     	return nota;
     }
     
     public static boolean eliminarNota(int id) throws Exception{
-    	List<Nota> notas = cargarTodas();
+    	List<Nota> notas = cargarNotas();
     	boolean eliminada = false;
     	Nota nota = buscarNota(id);
     	if (nota != null) {
 			notas.remove(nota);
 			eliminada = true;
 		}
-    	guardarTodas(notas);
+    	guardarNotas(notas);
     	return eliminada;
     }
     
@@ -116,7 +116,7 @@ public class NotaRepositorio {
 			throws Exception {
 		
 		Nota nota = null;
-		List<Nota> notas = cargarTodas();
+		List<Nota> notas = cargarNotas();
 		
 		for (int i = 0; i < notas.size(); i++) {
 			nota = notas.get(i);
@@ -126,7 +126,7 @@ public class NotaRepositorio {
 				if (nuevoContenido != null) {nota.actualizarContenido(nuevoContenido);}
 				if (nuevaSeccionId > 0) {nota.actualizarSeccionId(nuevaSeccionId);}
 
-				guardarTodas(notas);
+				guardarNotas(notas);
 				return nota;
 			}
 		}
