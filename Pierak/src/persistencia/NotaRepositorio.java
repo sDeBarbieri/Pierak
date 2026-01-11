@@ -134,4 +134,21 @@ public class NotaRepositorio {
 		
 		return nota;
 	}
+	
+	public static int vaciarSeccion(int seccionId) throws Exception {
+		List<Nota> notas = cargarNotas();
+		Nota nota = null;
+		int cantEliminada = 0;
+		
+		for (int i = 0; i < notas.size(); i++) {
+			nota = notas.get(i);
+			if (nota.getSeccionId() == seccionId) {
+				notas.remove(i);
+				cantEliminada++;
+				i--;
+			}
+		}
+		guardarNotas(notas);
+		return cantEliminada;
+	}
 }

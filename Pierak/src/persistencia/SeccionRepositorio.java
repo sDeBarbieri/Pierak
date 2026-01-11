@@ -90,6 +90,7 @@ public class SeccionRepositorio {
     	boolean eliminada = false;
     	Seccion seccion = buscarSeccion(id, secciones);
     	if (seccion != null) {
+    		NotaRepositorio.vaciarSeccion(id);
 			secciones.remove(seccion);
 			eliminada = true;
 		}
