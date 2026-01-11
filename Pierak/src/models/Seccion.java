@@ -4,7 +4,7 @@ public class Seccion {
 
 	private int id;
 	private String nombre;
-	private Archivo foto;
+	private Integer fotoId;
 
 	public Seccion(String nombre) {
 		setNombre(nombre);
@@ -22,16 +22,16 @@ public class Seccion {
 		this.nombre = nombre;
 	}
 
-	private void setFoto(Archivo foto) {
-		this.foto = foto;
+	private void setFotoId(Integer fotoId) {
+		this.fotoId = fotoId;
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	public Archivo getFoto() {
-		return foto;
+	public Integer getFotoId() {
+		return fotoId;
 	}
 
 	public void asignarId(int nuevoId) {
@@ -42,7 +42,16 @@ public class Seccion {
 		setNombre(nuevoNombre);
 	}
 
-	public void actualizarArchivo(Archivo nuevaFoto) {
-		setFoto(nuevaFoto);
+	public void actualizarFoto(Integer nuevaFoto) {
+		setFotoId(nuevaFoto);
 	}
+	
+	public boolean tieneFoto() {
+		return fotoId != null;
+	}
+
+	public void eliminarFoto() {
+		setFotoId(null);
+	}
+
 }

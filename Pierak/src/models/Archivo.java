@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 public class Archivo {
 
+	private int id;
 	private String nombre;
 	private Path ruta;
 	private TIPO_ARCHIVO tipo;
@@ -14,15 +15,27 @@ public class Archivo {
 		setTipo(tipo);
 	}
 	
-	public void setNombre(String nombre) {
+	private void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void asignarId(int id) {
+		setId(id);
+	}
+	
+	private void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	
-	public void setRuta(Path ruta) {
+	private void setRuta(Path ruta) {
 		this.ruta = ruta;
 	}
 	
-	public void setTipo(TIPO_ARCHIVO tipo) {
+	private void setTipo(TIPO_ARCHIVO tipo) {
 		this.tipo = tipo;
 	}
 
@@ -36,5 +49,17 @@ public class Archivo {
 
 	public TIPO_ARCHIVO getTipo() {
 		return tipo;
+	}
+	
+	public void actualizarRuta(Path ruta) {
+		setRuta(ruta);
+	}
+	
+	public void actualizarNombre(String nombre) {
+		setNombre(nombre);
+	}
+	
+	public void actualizarTipo(TIPO_ARCHIVO tipo) {
+		setTipo(tipo);
 	}
 }

@@ -49,7 +49,7 @@ public class NotaRepositorio {
 		Files.writeString(ARCHIVO, json);
 	}
     
-    public static List<Nota> buscarPorSeccion(int seccionId) throws Exception{
+    public static List<Nota> buscarPorSeccion(int seccionId) throws IOException{
     	List<Nota> todasLasNotas = cargarNotas();
     	List<Nota> notasDeLaSeccion = new ArrayList<Nota>();
     	
@@ -77,7 +77,7 @@ public class NotaRepositorio {
     	return encontrada;
     }
     
-    private static int obtenerProximoId(List<Nota> notas) throws Exception{
+    private static int obtenerProximoId(List<Nota> notas) {
         int max = 0;
         for (Nota nota : notas) {
             if (nota.getId() > max) {
@@ -151,4 +151,28 @@ public class NotaRepositorio {
 		guardarNotas(notas);
 		return cantEliminada;
 	}
+	
+	public static boolean agregarArchivoANota(int notaId, int archivoId) throws Exception {
+	    List<Nota> notas = cargarNotas();
+	    Nota nota = buscarNota(notaId, notas);
+	    boolean agregado = false;
+
+	    if (nota != null && nota.agregarArchivo(archivoId)) {
+	        guardarNotas(notas);
+	        agregado = true;
+	    }
+	    return agregado;
+	}
+	
+	public static boolean eliminarArchivoDeNota(int notaId, int archivoId) throws Exception {
+	    List<Nota> notas = cargarNotas();
+	    Nota nota = buscarNota(notaId, notas);
+	    boolean eliminado = false;
+	    if (nota != null && nota.eliminarArchivo(archivoId)) {
+	        guardarNotas(notas);
+	        eliminado = true;
+	    }
+	    return eliminado;
+	}
+
 }

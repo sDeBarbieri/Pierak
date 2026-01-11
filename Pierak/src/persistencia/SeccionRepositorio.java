@@ -11,7 +11,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import models.Archivo;
 import models.Seccion;
 
 public class SeccionRepositorio {
@@ -98,7 +97,7 @@ public class SeccionRepositorio {
     	return eliminada;
     }
 	
-	public static Seccion editarSeccion(int id, String nuevoNombre, Archivo nuevaFoto)
+	public static Seccion editarSeccion(int id, String nuevoNombre, Integer nuevaFoto)
 			throws Exception {
 		
 		List<Seccion> secciones = cargarSecciones();
@@ -107,11 +106,36 @@ public class SeccionRepositorio {
 			if (seccion != null) {
 
 				if (nuevoNombre != null) {seccion.actualizarNombre(nuevoNombre);}
-				if (nuevaFoto != null) {seccion.actualizarArchivo(nuevaFoto);}
+				if (nuevaFoto != null) {seccion.actualizarFoto(nuevaFoto);}
 
 				guardarSecciones(secciones);
 			}
 		
 		return seccion;
 	}
+	
+	public static boolean asignarFoto(int seccionId, int archivoId) throws Exception {
+		List<Seccion> secciones = cargarSecciones();
+		Seccion seccion = buscarSeccion(seccionId, secciones);
+		boolean asignada = false;
+		if (seccion != null) {
+			seccion.actualizarFoto(archivoId);
+			guardarSecciones(secciones);
+			asignada = true;
+		}
+		return asignada;
+	}
+
+	public static boolean eliminarFoto(int seccionId) throws Exception {
+		List<Seccion> secciones = cargarSecciones();
+		Seccion seccion = buscarSeccion(seccionId, secciones);
+		boolean eliminada = false;
+		if (seccion != null) { 
+			seccion.eliminarFoto();
+			guardarSecciones(secciones);
+			eliminada = true;
+		}
+		return eliminada;
+	}
+
 }
