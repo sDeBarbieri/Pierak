@@ -54,4 +54,8 @@ public class Seccion {
 		setFotoId(null);
 	}
 
+	@Override
+	public String toString() {
+		return this.nombre;
+	}
 }
