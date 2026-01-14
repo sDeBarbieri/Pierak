@@ -19,9 +19,9 @@
     </padding>
 
     <!-- Barra superior -->
-    <HBox spacing="20">
-        <Button text="+ Nota" prefWidth="200" prefHeight="60"/>
-        <Button text="+ Sección" prefWidth="200" prefHeight="60"/>
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="+ Nota" onAction="#crearNota" prefWidth="200" prefHeight="60"/>
+        <Button text="+ Sección" onAction="#crearSeccion" prefWidth="200" prefHeight="60"/>
     </HBox>
 
     <!-- Grilla de secciones -->

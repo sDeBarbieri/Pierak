@@ -14,7 +14,7 @@ public class MainApp extends Application {
 	        getClass().getResource("/views/HomeView.fxml")
 	    );
 
-	    Scene scene = new Scene(loader.load(), 300, 400);
+	    Scene scene = new Scene(loader.load(), 600, 400);
 
 	    stage.setTitle("Pierak");
 	    stage.setScene(scene);
