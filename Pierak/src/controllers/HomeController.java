@@ -89,11 +89,45 @@ public class HomeController {
 
     @FXML
     private void crearSeccion() {
-        System.out.println("Click en + Sección");
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/views/SeccionFormView.fxml")
+            );
+
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Nueva Sección");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            cargarSecciones(); // refrescar home
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     private void crearNota() {
-        System.out.println("Click en + Nota");
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/views/NotaFormView.fxml")
+            );
+
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Nueva Nota");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            // opcional: refrescar home si luego mostrás notas acá
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 }

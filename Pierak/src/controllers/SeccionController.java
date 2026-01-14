@@ -75,8 +75,28 @@ public class SeccionController {
     
     @FXML
     private void editarSeccion() {
-        // navegar a edición
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/views/SeccionFormView.fxml")
+            );
+
+            Parent root = loader.load();
+
+            SeccionFormController controller = loader.getController();
+            controller.setSeccion(seccionActual);
+
+            Stage stage = new Stage();
+            stage.setTitle("Editar Sección");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            lblNombreSeccion.setText(seccionActual.getNombre());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     private void vaciarSeccion() {
@@ -90,8 +110,29 @@ public class SeccionController {
 
     @FXML
     private void crearNota() {
-        // navegar a crear nota
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/views/NotaFormView.fxml")
+            );
+
+            Parent root = loader.load();
+
+            NotaFormController controller = loader.getController();
+            controller.setSeccion(seccionActual);
+
+            Stage stage = new Stage();
+            stage.setTitle("Nueva Nota");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            // Al volver, recargamos notas
+            cargarNotas();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
 
 }
