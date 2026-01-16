@@ -6,47 +6,51 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.ScrollPane?>
 
+<ScrollPane
+    fitToWidth="true"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="controllers.SeccionController">
 
+    <!-- CONTENEDOR REAL -->
+    <VBox spacing="20">
 
-<VBox spacing="20"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="controllers.SeccionController">
-      
-	<padding>
-        <Insets top="30" right="30" bottom="30" left="30"/>
-    </padding>
-    
-    <!-- Encabezado -->
-    <HBox spacing="15" alignment="CENTER_LEFT">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
 
-		<Button text="⬅"
-            onAction="#volverHome"/>
+        <!-- Encabezado -->
+        <HBox spacing="15" alignment="CENTER_LEFT">
 
-        <Label fx:id="lblNombreSeccion"
-               HBox.hgrow="ALWAYS"
-               style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+            <Button text="⬅"
+                    onAction="#volverHome"/>
 
-		<Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblNombreSeccion"
+                   HBox.hgrow="ALWAYS"
+                   style="-fx-font-size: 32px; -fx-font-weight: bold;" />
 
+            <Region HBox.hgrow="ALWAYS"/>
 
-        <Button text="Editar"
-                onAction="#editarSeccion"/>
+            <Button text="Editar"
+                    onAction="#editarSeccion"/>
 
-        <Button text="Vaciar"
-                onAction="#vaciarSeccion"/>
+            <Button text="Vaciar"
+                    onAction="#vaciarSeccion"/>
 
-        <Button text="Eliminar"
-                onAction="#eliminarSeccion"/>
-    </HBox>
+            <Button text="Eliminar"
+                    onAction="#eliminarSeccion"/>
+        </HBox>
 
-    <!-- Nueva nota -->
-    <Button text="+ Nueva Nota"
-            onAction="#crearNota"
-            style="-fx-font-size: 18px;"
-            maxWidth="Infinity"/>
+        <!-- Nueva nota -->
+        <Button text="+ Nueva Nota"
+                onAction="#crearNota"
+                style="-fx-font-size: 18px;"
+                maxWidth="Infinity"/>
 
-    <!-- Listado de notas -->
-    <VBox fx:id="contenedorNotas" spacing="10"/>
+        <!-- Listado de notas -->
+        <VBox fx:id="contenedorNotas" spacing="10"/>
 
-</VBox>
+    </VBox>
+</ScrollPane>

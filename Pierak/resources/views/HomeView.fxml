@@ -28,6 +28,7 @@
     <ScrollPane fitToWidth="true">
         <GridPane
             fx:id="gridSecciones"
+            alignment="CENTER"
             hgap="20"
             vgap="20"
         />
