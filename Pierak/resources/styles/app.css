@@ -115,13 +115,90 @@
 /* =========================
    SCROLL
    ========================= */
-.scroll-pane {
-    -fx-background-color: transparent;
-}
+   /* =========================
+      SCROLLBAR BASE
+      ========================= */
 
-.scroll-pane .viewport {
-    -fx-background-color: transparent;
-}
+   .scroll-bar {
+       -fx-background-color: transparent;
+   }
+
+   /* Track (fondo del scroll) */
+   .scroll-bar:vertical .track,
+   .scroll-bar:horizontal .track {
+       -fx-background-color: linear-gradient(
+           to bottom,
+           rgba(255,210,170,0.6),
+           rgba(255,170,90,0.6)
+       );
+       -fx-background-radius: 10;
+       -fx-border-radius: 10;
+       -fx-border-color: rgba(255,255,255,0.7);
+   }
+
+   /* Thumb (la parte que se arrastra) */
+   .scroll-bar:vertical .thumb,
+   .scroll-bar:horizontal .thumb {
+       -fx-background-color: linear-gradient(
+           to bottom,
+           #ffcc99,
+           #ff9a3c
+       );
+       -fx-background-radius: 10;
+       -fx-border-radius: 10;
+       -fx-border-color: #e07a1f;
+   }
+
+   /* Hover */
+   .scroll-bar:vertical .thumb:hover,
+   .scroll-bar:horizontal .thumb:hover {
+       -fx-background-color: linear-gradient(
+           to bottom,
+           #ffd4a6,
+           #ffad55
+       );
+   }
+
+   /* Pressed */
+   .scroll-bar:vertical .thumb:pressed,
+   .scroll-bar:horizontal .thumb:pressed {
+       -fx-background-color: linear-gradient(
+           to bottom,
+           #ffb86b,
+           #ff8c1a
+       );
+   }
+
+   /* Flechitas */
+   .scroll-bar .increment-button,
+   .scroll-bar .decrement-button {
+       -fx-background-color: linear-gradient(
+           to bottom,
+           #ffcc99,
+           #ff9a3c
+       );
+       -fx-background-radius: 8;
+       -fx-padding: 4;
+   }
+
+   .scroll-bar .increment-arrow,
+   .scroll-bar .decrement-arrow {
+       -fx-background-color: black;
+   }
+
+   /* =========================
+      SCROLL PANE GLASS
+      ========================= */
+
+   .scroll-pane {
+       -fx-background-color: transparent;
+       -fx-background-insets: 0;
+   }
+
+   .scroll-pane > .viewport {
+       -fx-background-color: transparent;
+   }
+
 
 /* =========================
    DIALOGS

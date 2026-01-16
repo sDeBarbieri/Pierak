@@ -173,10 +173,10 @@ public class SeccionController {
 
             Stage stage = new Stage();
             stage.setTitle("Nueva Nota");
-            stage.setScene(new Scene(root));
+            stage.setScene(UiUtils.crearSceneConCss(root));
             stage.showAndWait();
 
-            // Al volver, recargamos notas
+            // recargar notas
             cargarNotas();
 
         } catch (Exception e) {
