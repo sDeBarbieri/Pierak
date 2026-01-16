@@ -5,8 +5,8 @@
     -fx-font-family: "Segoe UI";
     -fx-background-color: linear-gradient(
         to bottom,
-        #ffe2c2,
-        #ffb86b
+        #ffffff,
+        #edebeb
     );
 }
 
@@ -104,7 +104,7 @@
     -fx-background-radius: 10;
     -fx-border-radius: 10;
     -fx-border-color: #e07a1f;
-    -fx-background-color: #fff2e0;
+    -fx-background-color: #fafafa;
 	-fx-font-size: 15px;
 }
 
