@@ -20,23 +20,28 @@
 
     <!-- Encabezado -->
     <HBox spacing="15" alignment="CENTER_LEFT">
+    
+    	<Button text="⬅"
+            onAction="#volver"/>
 
         <Label fx:id="lblTitulo"
                HBox.hgrow="ALWAYS"
                style="-fx-font-size: 32px; -fx-font-weight: bold;" />
-               
+
 		<Region HBox.hgrow="ALWAYS"/>
 		
-        <Button text="Editar"
-                onAction="#editarNota"/>
+        <Button text="Renombrar"
+        		onAction="#renombrarNota"/>
 
         <Button text="Eliminar"
                 onAction="#eliminarNota"/>
     </HBox>
 
+	
+
     <!-- Contenido -->
     <TextArea fx:id="txtContenido"
-              editable="false"
+              editable="true"
               wrapText="true"
               style="-fx-font-size: 16px;"
               prefHeight="400"/>

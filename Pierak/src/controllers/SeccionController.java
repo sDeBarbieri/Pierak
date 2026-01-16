@@ -66,7 +66,7 @@ public class SeccionController {
         Parent root = loader.load();
 
         NotaController controller = loader.getController();
-        controller.setNota(nota);
+        controller.setContexto(nota, seccionActual);
 
         Stage stage = (Stage) contenedorNotas.getScene().getWindow();
         stage.setScene(new Scene(root));
@@ -133,6 +133,22 @@ public class SeccionController {
         }
     }
 
+    @FXML
+    private void volverHome() {
 
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/views/HomeView.fxml")
+            );
+
+            Parent root = loader.load();
+
+            Stage stage = (Stage) lblNombreSeccion.getScene().getWindow();
+            stage.setScene(new Scene(root));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

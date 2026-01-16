@@ -20,6 +20,9 @@
     <!-- Encabezado -->
     <HBox spacing="15" alignment="CENTER_LEFT">
 
+		<Button text="⬅"
+            onAction="#volverHome"/>
+
         <Label fx:id="lblNombreSeccion"
                HBox.hgrow="ALWAYS"
                style="-fx-font-size: 32px; -fx-font-weight: bold;" />

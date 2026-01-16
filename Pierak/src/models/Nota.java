@@ -38,6 +38,7 @@ public class Nota {
 	
 	private void setTitulo(String titulo) {
 		this.titulo = titulo;
+		actualizarUltimaEdicion();
 	}
 	
 	public void actualizarTitulo(String titulo) {

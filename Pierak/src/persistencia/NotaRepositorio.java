@@ -117,7 +117,7 @@ public class NotaRepositorio {
     	return eliminada;
     }
     
-	public static Nota editarNota(int id, String nuevoTitulo, String nuevoContenido, int nuevaSeccionId)
+	public static Nota editarNota(int id, String nuevoTitulo, String nuevoContenido, Integer nuevaSeccionId)
 			throws Exception {
 		
 		List<Nota> notas = cargarNotas();
@@ -174,5 +174,4 @@ public class NotaRepositorio {
 	    }
 	    return eliminado;
 	}
-
 }
