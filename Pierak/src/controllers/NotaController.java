@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
@@ -13,6 +15,7 @@ import models.Seccion;
 import persistencia.NotaRepositorio;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 public class NotaController {
 
@@ -85,7 +88,24 @@ public class NotaController {
 
     @FXML
     private void eliminarNota() {
-        System.out.println("Eliminar nota: " + nota.getTitulo());
+    	
+    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar nota");
+        alert.setHeaderText("¿Eliminar esta nota?");
+        alert.setContentText("Esta acción no se puede deshacer.");
+
+        Optional<ButtonType> resultado = alert.showAndWait();
+
+        if (resultado.isEmpty() || resultado.get() != ButtonType.OK) {
+            return; // el usuario canceló
+        }
+    	
+    	try {
+			NotaRepositorio.eliminarNota(nota.getId());
+			volver();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
     
     @FXML

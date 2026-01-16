@@ -1,15 +1,20 @@
 package controllers;
 
+import java.util.Optional;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Nota;
 import models.Seccion;
 import persistencia.NotaRepositorio;
+import persistencia.SeccionRepositorio;
 import ui.NotaViewFactory;
 
 public class SeccionController {
@@ -100,12 +105,46 @@ public class SeccionController {
 
     @FXML
     private void vaciarSeccion() {
-        // confirmar + borrar notas
+    	
+    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Vaciar sección");
+        alert.setHeaderText("¿Eliminar todas las notas de la sección?");
+        alert.setContentText("Esta acción no se puede deshacer.");
+
+        Optional<ButtonType> resultado = alert.showAndWait();
+
+        if (resultado.isEmpty() || resultado.get() != ButtonType.OK) {
+            return; // el usuario canceló
+        }
+    	
+    	try {
+			NotaRepositorio.vaciarSeccion(seccionActual.getId());
+			cargarNotas(); // refrescar
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
     @FXML
     private void eliminarSeccion() {
-        // confirmar + eliminar sección
+    	
+    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar sección");
+        alert.setHeaderText("¿Eliminar la sección y todas sus notas?");
+        alert.setContentText("Esta acción no se puede deshacer.");
+
+        Optional<ButtonType> resultado = alert.showAndWait();
+        
+        if (resultado.isEmpty() || resultado.get() != ButtonType.OK) {
+            return; // el usuario canceló
+        }
+    	
+    	try {
+			SeccionRepositorio.eliminarSeccion(seccionActual.getId());
+			volverHome();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
     @FXML
