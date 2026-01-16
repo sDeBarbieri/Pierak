@@ -1,0 +1,145 @@
+/* =========================
+   ROOT
+   ========================= */
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: linear-gradient(
+        to bottom,
+        #ffe2c2,
+        #ffb86b
+    );
+}
+
+/* =========================
+   TEXTO GENERAL
+   ========================= */
+.label {
+    -fx-text-fill: #222222;
+}
+
+.text-area {
+    -fx-text-fill: #222222;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+.button {
+    -fx-background-color: linear-gradient(
+        to bottom,
+        #ffcc99,
+        #ff9a3c
+    );
+    -fx-border-color: #222222;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+	-fx-border-width: 0.5;
+    -fx-text-fill: #222222;
+    -fx-font-weight: normal;
+    -fx-padding: 6 14;
+}
+
+.button-home {
+    -fx-background-color: linear-gradient(
+        to bottom,
+        #fc7e00,
+        #fc5400
+    );
+    -fx-border-color: #222222;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+	-fx-border-width: 1;
+    -fx-text-fill: #222222;
+    -fx-font-weight: normal;
+    -fx-padding: 6 14;
+	-fx-font-size: 25px;
+	-fx-font-weight: 500;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(
+        to bottom,
+        #ffd4a6,
+        #ffad55
+    );
+}
+
+.button:pressed {
+    -fx-translate-y: 1;
+}
+
+/* =========================
+   TITLES
+   ========================= */
+.title-label {
+    -fx-font-size: 32px;
+    -fx-text-fill: #222222;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(255,255,255,0.6),
+        2, 0, 0, 1
+    );
+}
+
+/* =========================
+   PANELS (glass)
+   ========================= */
+.glass-panel {
+    -fx-background-color: rgba(255,230,200,0.85);
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: rgba(255,180,100,0.9);
+    -fx-padding: 15;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.15),
+        10, 0, 0, 4
+    );
+}
+
+/* =========================
+   TEXT AREA
+   ========================= */
+.text-area {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #e07a1f;
+    -fx-background-color: #fff2e0;
+	-fx-font-size: 15px;
+}
+
+.text-area .content {
+    -fx-background-color: transparent;
+}
+
+/* =========================
+   SCROLL
+   ========================= */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* =========================
+   DIALOGS
+   ========================= */
+.dialog-base {
+    -fx-background-color: linear-gradient(
+        #ffe0bf,
+        #ffb86b
+    );
+    -fx-background-radius: 12;
+}
+
+.dialog-base .label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #222222;
+}
+
+.dialog-base .text-field {
+    -fx-background-radius: 8;
+    -fx-text-fill: #222222;
+}

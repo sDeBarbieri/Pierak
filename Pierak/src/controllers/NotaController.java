@@ -17,6 +17,8 @@ import persistencia.NotaRepositorio;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
+import app.MainApp;
+
 public class NotaController {
 
     @FXML
@@ -64,6 +66,11 @@ public class NotaController {
         dialog.setHeaderText(null);
         dialog.setContentText("Nuevo título:");
 
+        dialog.getDialogPane()
+        .getStylesheets()
+        .add(getClass().getResource("/styles/app.css").toExternalForm());
+        dialog.getDialogPane().getStyleClass().add("dialog-base");
+        
         dialog.showAndWait().ifPresent(nuevoTitulo -> {
             if (nuevoTitulo.isBlank() || nuevoTitulo.equals(nota.getTitulo())) return;
 
@@ -93,6 +100,11 @@ public class NotaController {
         alert.setTitle("Eliminar nota");
         alert.setHeaderText("¿Eliminar esta nota?");
         alert.setContentText("Esta acción no se puede deshacer.");
+        
+        alert.getDialogPane()
+        .getStylesheets()
+        .add(getClass().getResource("/styles/app.css").toExternalForm());
+        alert.getDialogPane().getStyleClass().add("dialog-base");
 
         Optional<ButtonType> resultado = alert.showAndWait();
 
@@ -118,17 +130,17 @@ public class NotaController {
             );
 
             Parent root = loader.load();
-            
+
             SeccionController controller = loader.getController();
             controller.setSeccion(seccion);
 
-            Stage stage = (Stage) lblTitulo.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            MainApp.setRoot(root);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     
     @FXML

@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.Optional;
 
+import app.MainApp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +17,7 @@ import models.Seccion;
 import persistencia.NotaRepositorio;
 import persistencia.SeccionRepositorio;
 import ui.NotaViewFactory;
+import ui.UiUtils;
 
 public class SeccionController {
 
@@ -73,9 +75,9 @@ public class SeccionController {
         NotaController controller = loader.getController();
         controller.setContexto(nota, seccionActual);
 
-        Stage stage = (Stage) contenedorNotas.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        MainApp.setRoot(root);
     }
+
 
     
     @FXML
@@ -92,7 +94,7 @@ public class SeccionController {
 
             Stage stage = new Stage();
             stage.setTitle("Editar Sección");
-            stage.setScene(new Scene(root));
+            stage.setScene(UiUtils.crearSceneConCss(root));
             stage.showAndWait();
 
             lblNombreSeccion.setText(seccionActual.getNombre());
@@ -111,6 +113,11 @@ public class SeccionController {
         alert.setHeaderText("¿Eliminar todas las notas de la sección?");
         alert.setContentText("Esta acción no se puede deshacer.");
 
+        alert.getDialogPane()
+        .getStylesheets()
+        .add(getClass().getResource("/styles/app.css").toExternalForm());
+        alert.getDialogPane().getStyleClass().add("dialog-base");
+        
         Optional<ButtonType> resultado = alert.showAndWait();
 
         if (resultado.isEmpty() || resultado.get() != ButtonType.OK) {
@@ -133,6 +140,11 @@ public class SeccionController {
         alert.setHeaderText("¿Eliminar la sección y todas sus notas?");
         alert.setContentText("Esta acción no se puede deshacer.");
 
+        alert.getDialogPane()
+        .getStylesheets()
+        .add(getClass().getResource("/styles/app.css").toExternalForm());
+        alert.getDialogPane().getStyleClass().add("dialog-base");
+        
         Optional<ButtonType> resultado = alert.showAndWait();
         
         if (resultado.isEmpty() || resultado.get() != ButtonType.OK) {
@@ -174,20 +186,18 @@ public class SeccionController {
 
     @FXML
     private void volverHome() {
-
         try {
             FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("/views/HomeView.fxml")
             );
 
             Parent root = loader.load();
-
-            Stage stage = (Stage) lblNombreSeccion.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            MainApp.setRoot(root);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
 }

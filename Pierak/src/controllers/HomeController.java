@@ -1,5 +1,6 @@
 package controllers;
 
+import app.MainApp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import models.Seccion;
 import persistencia.SeccionRepositorio;
+import ui.UiUtils;
 
 import java.util.List;
 
@@ -27,7 +29,6 @@ public class HomeController {
     private void cargarSecciones() {
         try {
             List<Seccion> secciones = SeccionRepositorio.cargarSecciones();
-
             gridSecciones.getChildren().clear();
 
             int col = 0;
@@ -35,7 +36,6 @@ public class HomeController {
 
             for (Seccion seccion : secciones) {
                 Button btn = crearBotonSeccion(seccion);
-
                 gridSecciones.add(btn, col, row);
 
                 col++;
@@ -52,16 +52,10 @@ public class HomeController {
 
     private Button crearBotonSeccion(Seccion seccion) {
         Button btn = new Button(seccion.getNombre());
-
-        btn.setPrefSize(200, 120);
+        btn.setPrefSize(150, 90);
         btn.setWrapText(true);
-        btn.setStyle("""
-            -fx-font-size: 16px;
-            -fx-font-weight: bold;
-        """);
 
         btn.setOnAction(e -> abrirSeccion(seccion));
-
         return btn;
     }
 
@@ -76,16 +70,12 @@ public class HomeController {
             SeccionController controller = loader.getController();
             controller.setSeccion(seccion);
 
-            Scene scene = new Scene(root);
-
-            Stage stage = (Stage) gridSecciones.getScene().getWindow();
-            stage.setScene(scene);
+            MainApp.setRoot(root);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     private void crearSeccion() {
@@ -98,16 +88,15 @@ public class HomeController {
 
             Stage stage = new Stage();
             stage.setTitle("Nueva Sección");
-            stage.setScene(new Scene(root));
+            stage.setScene(UiUtils.crearSceneConCss(root));
             stage.showAndWait();
 
-            cargarSecciones(); // refrescar home
+            cargarSecciones();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     private void crearNota() {
@@ -120,10 +109,8 @@ public class HomeController {
 
             Stage stage = new Stage();
             stage.setTitle("Nueva Nota");
-            stage.setScene(new Scene(root));
+            stage.setScene(UiUtils.crearSceneConCss(root));
             stage.showAndWait();
-
-            // opcional: refrescar home si luego mostrás notas acá
 
         } catch (Exception e) {
             e.printStackTrace();

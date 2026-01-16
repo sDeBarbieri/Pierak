@@ -29,7 +29,7 @@
 
             <Label fx:id="lblNombreSeccion"
                    HBox.hgrow="ALWAYS"
-                   style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+                   styleClass="title-label" />
 
             <Region HBox.hgrow="ALWAYS"/>
 
