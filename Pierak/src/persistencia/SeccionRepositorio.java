@@ -15,8 +15,8 @@ import models.Seccion;
 
 public class SeccionRepositorio {
 
-	private static final Path ARCHIVO = Path.of("data/secciones.json");
-
+	private static final Path ARCHIVO = AppDataPaths.getDataDir().resolve("secciones.json");
+	
 	private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 	private static final Type LISTA_SECCIONES_TYPE = new TypeToken<List<Seccion>>() {}.getType();

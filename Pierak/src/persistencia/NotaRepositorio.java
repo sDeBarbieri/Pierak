@@ -14,8 +14,8 @@ import java.util.List;
 
 public class NotaRepositorio {
 
-    private static final Path ARCHIVO = Path.of("data/notas.json");
-
+	private static final Path ARCHIVO = AppDataPaths.getDataDir().resolve("notas.json");
+	
     private static final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .registerTypeAdapter(
